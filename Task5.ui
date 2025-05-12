@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1894</width>
+    <height>853</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>1871</width>
+      <height>641</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:#2B313B;
+border-radius:20px;
+border:3px solid #3E2B22;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="OutputImage">
+    <property name="geometry">
+     <rect>
+      <x>970</x>
+      <y>30</y>
+      <width>891</width>
+      <height>601</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:white;
+border-radius:20px;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="InputImage">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>30</y>
+      <width>911</width>
+      <height>601</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:white;
+border-radius:20px;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>660</y>
+      <width>1871</width>
+      <height>161</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:#2B313B;
+border-radius:20px;
+border:3px solid #3E2B22;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="Matching">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>740</y>
+      <width>221</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"> background-color: #A29790;
+ border-radius: 7px;
+ color: #2B313B;
+ font-size: 13px;
+ font-weight: 700;
+border:3px solid #D4D7D8;
+ letter-spacing: .8px;
+ line-height: 20px;
+ text-align: center;
+ text-transform: uppercase;</string>
+    </property>
+    <property name="text">
+     <string>Face Matching</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="Detection">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>740</y>
+      <width>221</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"> background-color: #A29790;
+ border-radius: 7px;
+ color: #2B313B;
+ font-size: 13px;
+ font-weight: 700;
+border:3px solid #D4D7D8;
+ letter-spacing: .8px;
+ line-height: 20px;
+ text-align: center;
+ text-transform: uppercase;</string>
+    </property>
+    <property name="text">
+     <string>Face Detection</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>670</y>
+      <width>801</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:#2B313B;
+color:#D4D7D8;
+font-size:25px;
+
+font-weight:bold;</string>
+    </property>
+    <property name="text">
+     <string>Technique</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="LoadImage">
+    <property name="geometry">
+     <rect>
+      <x>540</x>
+      <y>740</y>
+      <width>191</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+ background-color: #A29790;
+ border-radius: 7px;
+ color: #2B313B;
+ font-size: 13px;
+ font-weight: 700;
+border:3px solid #D4D7D8;
+ letter-spacing: .8px;
+ line-height: 20px;
+ text-align: center;
+ text-transform: uppercase;
+	}
+
+
+QPushButton:hover{
+	
+	background-color:#998D85;
+	}
+
+
+</string>
+    </property>
+    <property name="text">
+     <string>Load Image</string>
+    </property>
+   </widget>
+   <widget class="QSlider" name="iterationsHorizontalSlider">
+    <property name="geometry">
+     <rect>
+      <x>1280</x>
+      <y>750</y>
+      <width>201</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QSlider{
+	background:#2B313B;
+}
+QSlider::groove:horizontal {
+    height: 8px;
+    background: #2B313B; /* Lighter shade of the dark color */
+    border-radius: 4px;
+}
+
+QSlider::handle:horizontal {
+    background:  #2B313B; /* Mid-tone between the dark and lighter colors */
+    border: 2px solid #D4D7D8; /* Matches groove */
+    width: 20px;
+    height: 20px;
+    margin: -6px 0;
+    border-radius: 10px;
+}
+
+QSlider::sub-page:horizontal {
+    background: #A29790; /* Matches handle */
+    border-radius: 4px;
+}
+
+QSlider::add-page:horizontal {
+    background: #2B313B; /* Matches groove */
+    border:2px solid #D4D7D8;
+    border-radius: 4px;
+}
+</string>
+    </property>
+    <property name="minimum">
+     <number>1</number>
+    </property>
+    <property name="maximum">
+     <number>10</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_22">
+    <property name="geometry">
+     <rect>
+      <x>1160</x>
+      <y>740</y>
+      <width>111</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:#2B313B;
+color:#D4D7D8;
+font-size:15px;
+font-weight:bold;</string>
+    </property>
+    <property name="text">
+     <string>No. Iterations</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_23">
+    <property name="geometry">
+     <rect>
+      <x>790</x>
+      <y>740</y>
+      <width>111</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:#2B313B;
+color:#D4D7D8;
+font-size:15px;
+font-weight:bold;</string>
+    </property>
+    <property name="text">
+     <string>No. Iterations</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="num_clusters">
+    <property name="geometry">
+     <rect>
+      <x>910</x>
+      <y>750</y>
+      <width>201</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QSpinBox {
+    background-color: #A29790;
+    border-radius: 7px;
+    color: #2B313B;
+    font-size: 13px;
+    font-weight: 700;
+    border: 3px solid #D4D7D8;
+    letter-spacing: .8px;
+    line-height: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 0 10px; /* Add padding for the text inside the box */
+}
+
+QSpinBox::up-button, QSpinBox::down-button {
+    background-color: #D4D7D8;
+    border: none;
+    width: 15px;
+    height: 15px;
+}
+
+QSpinBox::up-button:hover, QSpinBox::down-button:hover {
+    background-color: #A29790;
+}
+
+QSpinBox::up-button:pressed, QSpinBox::down-button:pressed {
+    background-color: #2B313B;
+}
+
+QSpinBox::up-arrow, QSpinBox::down-arrow {
+    color: #000000; /* Change arrow color */
+}
+</string>
+    </property>
+    <property name="minimum">
+     <number>3</number>
+    </property>
+    <property name="maximum">
+     <number>10</number>
+    </property>
+    <property name="singleStep">
+     <number>1</number>
+    </property>
+    <property name="value">
+     <number>3</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="iterationsLabel">
+    <property name="geometry">
+     <rect>
+      <x>1500</x>
+      <y>750</y>
+      <width>31</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:#2B313B;
+color:#D4D7D8;
+font-size:15px;
+font-weight:bold;</string>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

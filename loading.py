@@ -3,11 +3,16 @@ from sklearn.model_selection import train_test_split
 import os
 from detection import detection  
 import cv2
-
+import re
 class loading:
     @staticmethod
     def extract_subject_id(filename):
-        return filename.split('-')[0]
+         # Extracts the first numeric sequence in the filename
+        match = re.match(r"(\d+)", filename)
+        if match:
+            return match.group(1)
+        else:
+            return filename  # fallback if no digits found
 
     @staticmethod
     def load_dataset(train_dir, test_dir, image_size=(100, 100)):
@@ -61,15 +66,15 @@ class loading:
 
 
 # testing (very very slow)
-# # Add your local paths for the dataset
-# dataset_path = "C:\\Users\\DR.Mahmoud\\Downloads\\PCA_data\\FEI_faces"
-# testing_path = "C:\\Users\\DR.Mahmoud\\Downloads\\PCA_data\\FEI_testing"
+# Add your local paths for the dataset
+dataset_path = "C:\\Users\\DR.Mahmoud\\Downloads\\PCA_data\\FEI_faces"
+testing_path = "C:\\Users\\DR.Mahmoud\\Downloads\\PCA_data\\FEI_testing"
 
-# # Load data
-# X_train, y_train, X_test, y_test, label_map, X_test_files = loading.load_dataset(dataset_path, testing_path)
+# Load data
+X_train, y_train, X_test, y_test, label_map, X_test_files = loading.load_dataset(dataset_path, testing_path)
 
-# print(f"Train samples: {len(X_train)}")
-# print(f"Test samples: {len(X_test)}")
-# print(f"Subjects found: {len(label_map)}")
-# print(f"Example label map: {label_map}")
-# print(X_test_files)
+print(f"Train samples: {len(X_train)}")
+print(f"Test samples: {len(X_test)}")
+print(f"Subjects found: {len(label_map)}")
+print(f"Example label map: {label_map}")
+print(X_test_files)

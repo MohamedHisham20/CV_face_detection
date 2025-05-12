@@ -67,14 +67,14 @@ class loading:
 
 # testing (very very slow)
 # Add your local paths for the dataset
-dataset_path = "C:\\Users\\DR.Mahmoud\\Downloads\\PCA_data\\FEI_faces"
-testing_path = "C:\\Users\\DR.Mahmoud\\Downloads\\PCA_data\\FEI_testing"
-
-# Load data
-X_train, y_train, X_test, y_test, label_map, X_test_files = loading.load_dataset(dataset_path, testing_path)
-
-print(f"Train samples: {len(X_train)}")
-print(f"Test samples: {len(X_test)}")
-print(f"Subjects found: {len(label_map)}")
-print(f"Example label map: {label_map}")
-print(X_test_files)
+# dataset_path = "C:\\Users\\DR.Mahmoud\\Downloads\\PCA_data\\FEI_faces"
+# testing_path = "C:\\Users\\DR.Mahmoud\\Downloads\\PCA_data\\FEI_testing"
+#
+# # Load data
+# X_train, y_train, X_test, y_test, label_map, X_test_files = loading.load_dataset(dataset_path, testing_path)
+#
+# print(f"Train samples: {len(X_train)}")
+# print(f"Test samples: {len(X_test)}")
+# print(f"Subjects found: {len(label_map)}")
+# print(f"Example label map: {label_map}")
+# print(X_test_files)

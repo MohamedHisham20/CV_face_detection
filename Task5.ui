@@ -128,26 +128,6 @@ border:3px solid #D4D7D8;
      <string>Face Detection</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_4">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>670</y>
-      <width>801</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color:#2B313B;
-color:#D4D7D8;
-font-size:25px;
-
-font-weight:bold;</string>
-    </property>
-    <property name="text">
-     <string>Technique</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="LoadImage">
     <property name="geometry">
      <rect>
@@ -187,7 +167,7 @@ QPushButton:hover{
    <widget class="QSlider" name="iterationsHorizontalSlider">
     <property name="geometry">
      <rect>
-      <x>1280</x>
+      <x>1580</x>
       <y>750</y>
       <width>201</width>
       <height>22</height>
@@ -237,7 +217,7 @@ QSlider::add-page:horizontal {
    <widget class="QLabel" name="label_22">
     <property name="geometry">
      <rect>
-      <x>1170</x>
+      <x>1470</x>
       <y>740</y>
       <width>111</width>
       <height>41</height>
@@ -256,7 +236,7 @@ font-weight:bold;</string>
    <widget class="QLabel" name="label_23">
     <property name="geometry">
      <rect>
-      <x>800</x>
+      <x>1100</x>
       <y>740</y>
       <width>111</width>
       <height>41</height>
@@ -275,7 +255,7 @@ font-weight:bold;</string>
    <widget class="QSpinBox" name="num_clusters">
     <property name="geometry">
      <rect>
-      <x>920</x>
+      <x>1220</x>
       <y>750</y>
       <width>201</width>
       <height>31</height>
@@ -332,7 +312,7 @@ QSpinBox::up-arrow, QSpinBox::down-arrow {
    <widget class="QLabel" name="iterationsLabel">
     <property name="geometry">
      <rect>
-      <x>1490</x>
+      <x>1790</x>
       <y>745</y>
       <width>31</width>
       <height>31</height>
@@ -351,7 +331,7 @@ font-weight:bold;</string>
    <widget class="QLabel" name="label_11">
     <property name="geometry">
      <rect>
-      <x>790</x>
+      <x>1090</x>
       <y>730</y>
       <width>351</width>
       <height>71</height>
@@ -369,7 +349,7 @@ border:2px solid #D4D7D8;</string>
    <widget class="QLabel" name="label_12">
     <property name="geometry">
      <rect>
-      <x>1160</x>
+      <x>1460</x>
       <y>730</y>
       <width>381</width>
       <height>71</height>
@@ -384,13 +364,48 @@ border:2px solid #D4D7D8;</string>
      <string/>
     </property>
    </widget>
+   <widget class="QPushButton" name="ROC">
+    <property name="geometry">
+     <rect>
+      <x>770</x>
+      <y>740</y>
+      <width>191</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+ background-color: #A29790;
+ border-radius: 7px;
+ color: #2B313B;
+ font-size: 13px;
+ font-weight: 700;
+border:3px solid #D4D7D8;
+ letter-spacing: .8px;
+ line-height: 20px;
+ text-align: center;
+ text-transform: uppercase;
+	}
+
+
+QPushButton:hover{
+	
+	background-color:#998D85;
+	}
+
+
+</string>
+    </property>
+    <property name="text">
+     <string>ROC</string>
+    </property>
+   </widget>
    <zorder>label</zorder>
    <zorder>OutputImage</zorder>
    <zorder>InputImage</zorder>
    <zorder>label_2</zorder>
    <zorder>Matching</zorder>
    <zorder>Detection</zorder>
-   <zorder>label_4</zorder>
    <zorder>LoadImage</zorder>
    <zorder>label_11</zorder>
    <zorder>num_clusters</zorder>
@@ -399,6 +414,7 @@ border:2px solid #D4D7D8;</string>
    <zorder>iterationsLabel</zorder>
    <zorder>iterationsHorizontalSlider</zorder>
    <zorder>label_22</zorder>
+   <zorder>ROC</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

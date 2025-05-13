@@ -297,31 +297,129 @@ class FaceRecognitionApp(QMainWindow):
         # Calculate confidence (inverse of distance, normalized)
         max_distance = 5000  # Arbitrary max distance for normalization
         confidence = max(0, min(100, 100 * (1 - closest_distance / max_distance)))
+
+        if closest_distance > 70.0:
+            self.match_result.setText("No match found")
+            self.match_confidence.setValue(0)
+            self.statusBar().showMessage("No match found")
+        else:
+            self.match_result.setText(f"Subject ID: {subject_id}\nDistance: {closest_distance:.2f}")
+            self.match_confidence.setValue(int(confidence))
+
+            self.statusBar().showMessage(f"Matched to Subject ID: {subject_id} with {confidence:.1f}% confidence")
+    
+    def extract_subject_id(self, filename):
+        """Extracts the subject ID from a filename.
         
-        # Display match result
-        self.match_result.setText(f"Subject ID: {subject_id}\nDistance: {closest_distance:.2f}")
-        self.match_confidence.setValue(int(confidence))
+        Args:
+            filename: The filename to extract the subject ID from
+            
+        Returns:
+            The subject ID as a string
+        """
+        import re
+        # Extracts the first numeric sequence in the filename
+        match1 = re.match(r"(\d+)", filename)
+        if match1:
+            return match1.group(1).zfill(2)
+        match2 = re.match(r"(\d+)_[a-z]", filename, re.IGNORECASE)
+        if match2:
+            return match2.group(1).zfill(2)
+        return filename
+    
+    def load_test_dataset(self, test_dir, image_size=(100, 100)):
+        """Load test dataset from directory.
         
-        self.statusBar().showMessage(f"Matched to Subject ID: {subject_id} with {confidence:.1f}% confidence")
+        Args:
+            test_dir: Directory containing test images
+            image_size: Size to resize images to
+            
+        Returns:
+            X_test, y_test, test_paths: Test data, labels, and file paths
+        """
+        import os
+        import cv2
+        import numpy as np
+        from collections import defaultdict
+        
+        X_test, y_test = [], []
+        test_paths = []
+        
+        # Get the label map from loaded models
+        if not self.models_loaded:
+            QMessageBox.warning(self, "Warning", "Models not loaded. Please restart the application.")
+            return None, None, None
+        
+        # Process test directory
+        for fname in sorted(os.listdir(test_dir)):
+            if not fname.lower().endswith(('.jpg', '.png', '.jpeg')):
+                continue
+            
+            # Extract subject ID from filename
+            subject_id = self.extract_subject_id(fname)
+            
+            # Get label from label map
+            if subject_id not in self.label_map:
+                continue  # Skip if subject not in training set
+            
+            label = self.label_map[subject_id]
+            
+            # Process image
+            img_path = os.path.join(test_dir, fname)
+            face = detection.detect_face(img_path, img_size=image_size)
+            
+            if face is None:
+                continue  # Skip if no face detected
+            
+            # Resize face to match training data
+            face_resized = cv2.resize(face, image_size)
+            
+            X_test.append(face_resized)
+            y_test.append(label)
+            test_paths.append(img_path)
+        
+        return np.array(X_test), np.array(y_test), test_paths
     
     def plot_roc_curve(self):
         if not self.models_loaded:
             QMessageBox.warning(self, "Warning", "Models not loaded. Please restart the application.")
             return
         
+        # Ask user to select test dataset directory
+        test_dir = QFileDialog.getExistingDirectory(
+            self, "Select Test Dataset Directory", ""
+        )
+        
+        if not test_dir:
+            return
+        
+        # Load test dataset
+        X_test, y_test, test_paths = self.load_test_dataset(test_dir)
+        
+        if X_test is None or len(X_test) == 0:
+            QMessageBox.warning(self, "Warning", "No valid test images found in the selected directory.")
+            return
+        
+        self.statusBar().showMessage(f"Loaded {len(X_test)} test images from {test_dir}")
+        
+        # Preprocess test data
+        X_test_flat = np.array([img.flatten() for img in X_test])
+        X_test_scaled = self.scaler.transform(X_test_flat)
+        X_test_pca = self.pca.transform(X_test_scaled)
+        
         # For ROC curve, we need true labels and scores
         # We'll use distances to the correct class vs. incorrect classes
         
         # Get unique labels
-        unique_labels = np.unique(self.y_train)
+        unique_labels = np.unique(np.concatenate([self.y_train, y_test]))
         
         # Prepare data for ROC curve
         y_true = []
         y_scores = []
         
-        # For each sample in the training set
-        for i, sample in enumerate(self.X_train_pca):
-            true_label = self.y_train[i]
+        # For each sample in the test set
+        for i, sample in enumerate(X_test_pca):
+            true_label = y_test[i]
             
             # Calculate distances to all training samples
             distances = np.sqrt(np.sum((self.X_train_pca - sample)**2, axis=1))
@@ -334,8 +432,12 @@ class FaceRecognitionApp(QMainWindow):
                 # Use negative distance as score (closer = higher score)
                 # Get minimum distance to samples of this label
                 label_indices = np.where(self.y_train == label)[0]
-                min_distance = np.min(distances[label_indices])
-                y_scores.append(-min_distance)
+                if len(label_indices) > 0:
+                    min_distance = np.min(distances[label_indices])
+                    y_scores.append(-min_distance)
+                else:
+                    # If no samples for this label, use a large distance
+                    y_scores.append(-1e6)
         
         # Compute ROC curve
         roc = ROCCurve()
@@ -361,7 +463,7 @@ class FaceRecognitionApp(QMainWindow):
         
         plt.close(fig)
         
-        self.statusBar().showMessage(f"ROC Curve plotted with AUC: {roc.auc:.3f}")
+        self.statusBar().showMessage(f"ROC Curve plotted with AUC: {roc.auc:.3f} using {len(X_test)} test images")
 
 
 if __name__ == '__main__':

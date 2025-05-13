@@ -1,0 +1,796 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1894</width>
+    <height>1000</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>PCA Face Analysis</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <!-- Main background panel for input and output images -->
+   <widget class="QLabel" name="main_panel">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>1871</width>
+      <height>641</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:#2B313B;
+border-radius:20px;
+border:3px solid #3E2B22;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   
+   <!-- Input Image Display -->
+   <widget class="QLabel" name="InputImage">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>30</y>
+      <width>911</width>
+      <height>601</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:white;
+border-radius:20px;</string>
+    </property>
+   </widget>
+   
+   <!-- Output Image Display (Processed Face) -->
+   <widget class="QLabel" name="OutputImage">
+    <property name="geometry">
+     <rect>
+      <x>970</x>
+      <y>30</y>
+      <width>891</width>
+      <height>601</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:white;
+border-radius:20px;</string>
+    </property>
+   </widget>
+   
+   <!-- Eigenfaces Panel -->
+   <widget class="QLabel" name="eigenfaces_panel">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>660</y>
+      <width>1871</width>
+      <height>161</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:#2B313B;
+border-radius:20px;
+border:3px solid #3E2B22;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   
+   <!-- Eigenface 1 -->
+   <widget class="QLabel" name="eigenface1">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>680</y>
+      <width>120</width>
+      <height>120</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:white;
+border-radius:10px;</string>
+    </property>
+   </widget>
+   
+   <!-- Eigenface 2 -->
+   <widget class="QLabel" name="eigenface2">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>680</y>
+      <width>120</width>
+      <height>120</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:white;
+border-radius:10px;</string>
+    </property>
+   </widget>
+   
+   <!-- Eigenface 3 -->
+   <widget class="QLabel" name="eigenface3">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>680</y>
+      <width>120</width>
+      <height>120</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:white;
+border-radius:10px;</string>
+    </property>
+   </widget>
+   
+   <!-- Eigenface 4 -->
+   <widget class="QLabel" name="eigenface4">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>680</y>
+      <width>120</width>
+      <height>120</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:white;
+border-radius:10px;</string>
+    </property>
+   </widget>
+   
+   <!-- Eigenface 5 -->
+   <widget class="QLabel" name="eigenface5">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>680</y>
+      <width>120</width>
+      <height>120</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:white;
+border-radius:10px;</string>
+    </property>
+   </widget>
+   
+   <!-- Match Result Label -->
+   <widget class="QLabel" name="match_result_label">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>680</y>
+      <width>150</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:#2B313B;
+color:#D4D7D8;
+font-size:15px;
+font-weight:bold;</string>
+    </property>
+    <property name="text">
+     <string>Match Result:</string>
+    </property>
+   </widget>
+   
+   <!-- Match Result Display -->
+   <widget class="QLabel" name="match_result">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>710</y>
+      <width>200</width>
+      <height>90</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:white;
+border-radius:10px;</string>
+    </property>
+   </widget>
+   
+   <!-- Match Confidence Label -->
+   <widget class="QLabel" name="match_confidence_label">
+    <property name="geometry">
+     <rect>
+      <x>890</x>
+      <y>680</y>
+      <width>150</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:#2B313B;
+color:#D4D7D8;
+font-size:15px;
+font-weight:bold;</string>
+    </property>
+    <property name="text">
+     <string>Confidence:</string>
+    </property>
+   </widget>
+   
+   <!-- Match Confidence Display -->
+   <widget class="QProgressBar" name="match_confidence">
+    <property name="geometry">
+     <rect>
+      <x>890</x>
+      <y>710</y>
+      <width>200</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QProgressBar {
+    background-color: #2B313B;
+    border-radius: 7px;
+    color: #D4D7D8;
+    border: 2px solid #D4D7D8;
+    text-align: center;
+}
+
+QProgressBar::chunk {
+    background-color: #A29790;
+    border-radius: 5px;
+}</string>
+    </property>
+    <property name="value">
+     <number>0</number>
+    </property>
+   </widget>
+   
+   <!-- Control Panel -->
+   <widget class="QLabel" name="control_panel">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>830</y>
+      <width>1871</width>
+      <height>141</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:#2B313B;
+border-radius:20px;
+border:3px solid #3E2B22;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   
+   <!-- Face Matching Radio Button -->
+   <widget class="QRadioButton" name="Matching">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>880</y>
+      <width>221</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"> background-color: #A29790;
+ border-radius: 7px;
+ color: #2B313B;
+ font-size: 13px;
+ font-weight: 700;
+border:3px solid #D4D7D8;
+ letter-spacing: .8px;
+ line-height: 20px;
+ text-align: center;
+ text-transform: uppercase;</string>
+    </property>
+    <property name="text">
+     <string>Face Matching</string>
+    </property>
+   </widget>
+   
+   <!-- Face Detection Radio Button -->
+   <widget class="QRadioButton" name="Detection">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>880</y>
+      <width>221</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"> background-color: #A29790;
+ border-radius: 7px;
+ color: #2B313B;
+ font-size: 13px;
+ font-weight: 700;
+border:3px solid #D4D7D8;
+ letter-spacing: .8px;
+ line-height: 20px;
+ text-align: center;
+ text-transform: uppercase;</string>
+    </property>
+    <property name="text">
+     <string>Face Detection</string>
+    </property>
+   </widget>
+   
+   <!-- Load Image Button -->
+   <widget class="QPushButton" name="LoadImage">
+    <property name="geometry">
+     <rect>
+      <x>540</x>
+      <y>880</y>
+      <width>191</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+ background-color: #A29790;
+ border-radius: 7px;
+ color: #2B313B;
+ font-size: 13px;
+ font-weight: 700;
+border:3px solid #D4D7D8;
+ letter-spacing: .8px;
+ line-height: 20px;
+ text-align: center;
+ text-transform: uppercase;
+	}
+
+
+QPushButton:hover{
+	
+background-color:#998D85;
+	}
+
+
+</string>
+    </property>
+    <property name="text">
+     <string>Load Image</string>
+    </property>
+   </widget>
+   
+   <!-- ROC Button -->
+   <widget class="QPushButton" name="ROC">
+    <property name="geometry">
+     <rect>
+      <x>770</x>
+      <y>880</y>
+      <width>191</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+ background-color: #A29790;
+ border-radius: 7px;
+ color: #2B313B;
+ font-size: 13px;
+ font-weight: 700;
+border:3px solid #D4D7D8;
+ letter-spacing: .8px;
+ line-height: 20px;
+ text-align: center;
+ text-transform: uppercase;
+	}
+
+
+QPushButton:hover{
+	
+background-color:#998D85;
+	}
+
+
+</string>
+    </property>
+    <property name="text">
+     <string>ROC</string>
+    </property>
+   </widget>
+   
+   <!-- Min Neighbors Panel -->
+   <widget class="QLabel" name="min_neighbors_panel">
+    <property name="geometry">
+     <rect>
+      <x>1090</x>
+      <y>865</y>
+      <width>351</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:#2B313B;
+border-radius:20px;
+border:2px solid #D4D7D8;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   
+   <!-- Min Neighbors Label -->
+   <widget class="QLabel" name="min_neighbors_label">
+    <property name="geometry">
+     <rect>
+      <x>1100</x>
+      <y>875</y>
+      <width>111</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:#2B313B;
+color:#D4D7D8;
+font-size:15px;
+font-weight:bold;</string>
+    </property>
+    <property name="text">
+     <string>Min Neighbors</string>
+    </property>
+   </widget>
+   
+   <!-- Min Neighbors SpinBox -->
+   <widget class="QSpinBox" name="min_neighbors">
+    <property name="geometry">
+     <rect>
+      <x>1220</x>
+      <y>885</y>
+      <width>201</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QSpinBox {
+    background-color: #A29790;
+    border-radius: 7px;
+    color: #2B313B;
+    font-size: 13px;
+    font-weight: 700;
+    border: 3px solid #D4D7D8;
+    letter-spacing: .8px;
+    line-height: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 0 10px; /* Add padding for the text inside the box */
+}
+
+QSpinBox::up-button, QSpinBox::down-button {
+    background-color: #D4D7D8;
+    border: none;
+    width: 15px;
+    height: 15px;
+}
+
+QSpinBox::up-button:hover, QSpinBox::down-button:hover {
+    background-color: #A29790;
+}
+
+QSpinBox::up-button:pressed, QSpinBox::down-button:pressed {
+    background-color: #2B313B;
+}
+
+QSpinBox::up-arrow, QSpinBox::down-arrow {
+    color: #000000; /* Change arrow color */
+}
+</string>
+    </property>
+    <property name="minimum">
+     <number>3</number>
+    </property>
+    <property name="maximum">
+     <number>10</number>
+    </property>
+    <property name="singleStep">
+     <number>1</number>
+    </property>
+    <property name="value">
+     <number>5</number>
+    </property>
+   </widget>
+   
+   <!-- Scale Factor Panel -->
+   <widget class="QLabel" name="scale_factor_panel">
+    <property name="geometry">
+     <rect>
+      <x>1460</x>
+      <y>865</y>
+      <width>381</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:#2B313B;
+border-radius:20px;
+border:2px solid #D4D7D8;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   
+   <!-- Scale Factor Label -->
+   <widget class="QLabel" name="scale_factor_label">
+    <property name="geometry">
+     <rect>
+      <x>1470</x>
+      <y>875</y>
+      <width>111</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:#2B313B;
+color:#D4D7D8;
+font-size:15px;
+font-weight:bold;</string>
+    </property>
+    <property name="text">
+     <string>Scale Factor</string>
+    </property>
+   </widget>
+   
+   <!-- Scale Factor Slider -->
+   <widget class="QSlider" name="scale_factor_slider">
+    <property name="geometry">
+     <rect>
+      <x>1580</x>
+      <y>885</y>
+      <width>201</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QSlider{
+	background:#2B313B;
+}
+QSlider::groove:horizontal {
+    height: 8px;
+    background: #2B313B; /* Lighter shade of the dark color */
+    border-radius: 4px;
+}
+
+QSlider::handle:horizontal {
+    background:  #2B313B; /* Mid-tone between the dark and lighter colors */
+    border: 2px solid #D4D7D8; /* Matches groove */
+    width: 20px;
+    height: 20px;
+    margin: -6px 0;
+    border-radius: 10px;
+}
+
+QSlider::sub-page:horizontal {
+    background: #A29790; /* Matches handle */
+    border-radius: 4px;
+}
+
+QSlider::add-page:horizontal {
+    background: #2B313B; /* Matches groove */
+    border:2px solid #D4D7D8;
+    border-radius: 4px;
+}
+</string>
+    </property>
+    <property name="minimum">
+     <number>10</number>
+    </property>
+    <property name="maximum">
+     <number>20</number>
+    </property>
+    <property name="value">
+     <number>11</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   
+   <!-- Scale Factor Value Label -->
+   <widget class="QLabel" name="scale_factor_value">
+    <property name="geometry">
+     <rect>
+      <x>1790</x>
+      <y>880</y>
+      <width>41</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:#2B313B;
+color:#D4D7D8;
+font-size:15px;
+font-weight:bold;</string>
+    </property>
+    <property name="text">
+     <string>1.1</string>
+    </property>
+   </widget>
+   
+   <!-- Number of Eigenfaces Label -->
+   <widget class="QLabel" name="num_eigenfaces_label">
+    <property name="geometry">
+     <rect>
+      <x>1100</x>
+      <y>710</y>
+      <width>150</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:#2B313B;
+color:#D4D7D8;
+font-size:15px;
+font-weight:bold;</string>
+    </property>
+    <property name="text">
+     <string>Num Eigenfaces:</string>
+    </property>
+   </widget>
+   
+   <!-- Number of Eigenfaces SpinBox -->
+   <widget class="QSpinBox" name="num_eigenfaces">
+    <property name="geometry">
+     <rect>
+      <x>1250</x>
+      <y>710</y>
+      <width>100</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QSpinBox {
+    background-color: #A29790;
+    border-radius: 7px;
+    color: #2B313B;
+    font-size: 13px;
+    font-weight: 700;
+    border: 3px solid #D4D7D8;
+    letter-spacing: .8px;
+    line-height: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 0 10px;
+}
+
+QSpinBox::up-button, QSpinBox::down-button {
+    background-color: #D4D7D8;
+    border: none;
+    width: 15px;
+    height: 15px;
+}
+
+QSpinBox::up-button:hover, QSpinBox::down-button:hover {
+    background-color: #A29790;
+}
+
+QSpinBox::up-button:pressed, QSpinBox::down-button:pressed {
+    background-color: #2B313B;
+}
+
+QSpinBox::up-arrow, QSpinBox::down-arrow {
+    color: #000000;
+}
+</string>
+    </property>
+    <property name="minimum">
+     <number>5</number>
+    </property>
+    <property name="maximum">
+     <number>50</number>
+    </property>
+    <property name="singleStep">
+     <number>5</number>
+    </property>
+    <property name="value">
+     <number>10</number>
+    </property>
+   </widget>
+   
+   <!-- Apply PCA Button -->
+   <widget class="QPushButton" name="apply_pca">
+    <property name="geometry">
+     <rect>
+      <x>1370</x>
+      <y>710</y>
+      <width>191</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+ background-color: #A29790;
+ border-radius: 7px;
+ color: #2B313B;
+ font-size: 13px;
+ font-weight: 700;
+border:3px solid #D4D7D8;
+ letter-spacing: .8px;
+ line-height: 20px;
+ text-align: center;
+ text-transform: uppercase;
+	}
+
+
+QPushButton:hover{
+	
+background-color:#998D85;
+	}
+
+
+</string>
+    </property>
+    <property name="text">
+     <string>Apply PCA</string>
+    </property>
+   </widget>
+   
+   <!-- Eigenfaces Title Label -->
+   <widget class="QLabel" name="eigenfaces_title">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>660</y>
+      <width>150</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:#2B313B;
+color:#D4D7D8;
+font-size:15px;
+font-weight:bold;</string>
+    </property>
+    <property name="text">
+     <string>Top Eigenfaces:</string>
+    </property>
+   </widget>
+   
+   <zorder>main_panel</zorder>
+   <zorder>InputImage</zorder>
+   <zorder>OutputImage</zorder>
+   <zorder>eigenfaces_panel</zorder>
+   <zorder>eigenface1</zorder>
+   <zorder>eigenface2</zorder>
+   <zorder>eigenface3</zorder>
+   <zorder>eigenface4</zorder>
+   <zorder>eigenface5</zorder>
+   <zorder>match_result_label</zorder>
+   <zorder>match_result</zorder>
+   <zorder>match_confidence_label</zorder>
+   <zorder>match_confidence</zorder>
+   <zorder>control_panel</zorder>
+   <zorder>Matching</zorder>
+   <zorder>Detection</zorder>
+   <zorder>LoadImage</zorder>
+   <zorder>ROC</zorder>
+   <zorder>min_neighbors_panel</zorder>
+   <zorder>min_neighbors_label</zorder>
+   <zorder>min_neighbors</zorder>
+   <zorder>scale_factor_panel</zorder>
+   <zorder>scale_factor_label</zorder>
+   <zorder>scale_factor_slider</zorder>
+   <zorder>scale_factor_value</zorder>
+   <zorder>num_eigenfaces_label</zorder>
+   <zorder>num_eigenfaces</zorder>
+   <zorder>apply_pca</zorder>
+   <zorder>eigenfaces_title</zorder>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

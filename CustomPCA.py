@@ -51,10 +51,11 @@ class Custom_PCA:
     def load(self, filename):
         data = np.load(filename)
         self.mean_face = data['mean_face']
-        self.explained_variance_ratio = data['explained_variance_ratio']
+        self.explained_variance_ratio_ = data['explained_variance_ratio_']
         self.components_ = data['components']
-        self.n_components = self.components_.shape[0]
+        self.n_components = self.components_.shape[1]
         print(f"Loaded {self.n_components} components from {filename}")
+        return self
 
     def save(self, filename):
         np.savez(filename, mean_face=self.mean_face, explained_variance_ratio=self.explained_variance_ratio, components=self.components_)
